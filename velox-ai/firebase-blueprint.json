@@ -1,0 +1,52 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Represents a user profile with their quiz answers, active plan, credits, and metrics.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "selectedPlan": { "type": "string", "enum": ["free", "pro", "elite"] },
+        "credits": { "type": "integer" },
+        "maxCredits": { "type": "integer" },
+        "creditsUsed": { "type": "integer" },
+        "totalResponsesGenerated": { "type": "integer" },
+        "totalPickupsCreated": { "type": "integer" },
+        "quizAnswers": { "type": "object" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "credits"]
+    },
+    "Log": {
+      "title": "Log",
+      "description": "A generated conversation response or pickup line.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["resposta", "cantada"] },
+        "context": { "type": "string" },
+        "style": { "type": "string" },
+        "recommendation": { "type": "string" },
+        "levelText": { "type": "string" },
+        "percentage": { "type": "integer" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "type", "content", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Collection of user document configurations and states."
+    },
+    "/users/{userId}/logs/{logId}": {
+      "schema": "Log",
+      "description": "Subcollection of generated responses or pickups for history keeping and statistics."
+    }
+  }
+}

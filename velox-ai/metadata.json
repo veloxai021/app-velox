@@ -1,0 +1,6 @@
+{
+  "name": "Velox AI",
+  "description": "Aplicativo focado no nicho de relacionamento de alta conversão para gerar respostas magnéticas, cantadas perspicazes, com planos premium, créditos e estatísticas detalhadas de uso.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
